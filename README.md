@@ -24,12 +24,13 @@ An online E-store system built in Java 8=>11 and springboot 2.6.2
 4. execute npm i
 5. execute `ng serve --open`
 
-## Screenshots
+## UI Screenshots
 1. homepage
-<img src="/estore-ui/src/assets/images/sc1.png" alt="Alt text" title="Optional title">
-
+![Alt text](./estore-ui/src/assets/images/sc1.PNG )
 3. admin panel
-4. add product 
+![Alt text](./estore-ui/src/assets/images/sc2.PNG )
+5. add product 
+![Alt text](./estore-ui/src/assets/images/sc3.PNG )
 
 ## Known bugs and disclaimers
 
