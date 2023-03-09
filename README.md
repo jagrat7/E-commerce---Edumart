@@ -20,8 +20,9 @@ An online E-store system built in Java 8=>11 and springboot 2.6.2
 
 1. Clone the repository and go to the root directory.
 2. cd to estore-api execute `mvn compile exec:java`
-3. cd to estore-ui execute `ng serve --open`
-
+3. cd to estore-ui 
+4. execute npm i
+5. execute `ng serve --open`
 ## Known bugs and disclaimers
 
 (It may be the case that your implementation is not perfect.)
