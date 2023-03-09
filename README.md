@@ -26,7 +26,7 @@ An online E-store system built in Java 8=>11 and springboot 2.6.2
 
 ## Screenshots
 1. homepage
-<img src="./estore-ui/src/assets/images/sc1.png" alt="Alt text" title="Optional title">
+<img src="/estore-ui/src/assets/images/sc1.png" alt="Alt text" title="Optional title">
 
 3. admin panel
 4. add product 
