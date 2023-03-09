@@ -1,0 +1,43 @@
+<h1>Booked Sessions</h1>
+<table mat-table [dataSource]="this.sessions" class="mat-elevation-z8">
+  <caption></caption>
+
+  <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef>Author</th>
+    <td mat-cell *matCellDef="let element">{{ element.author }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef>Time</th>
+    <td mat-cell *matCellDef="let element">{{ element.time }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="link">
+    <th mat-header-cell *matHeaderCellDef>Link</th>
+    <td mat-cell *matCellDef="let element">
+      <a href="{{ element.link }}">click to open</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="platform">
+    <th mat-header-cell *matHeaderCellDef>Platform</th>
+    <td mat-cell *matCellDef="let element">{{ element.platform }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

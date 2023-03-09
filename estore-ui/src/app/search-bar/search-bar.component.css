@@ -1,0 +1,13 @@
+.tileWrapper{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    grid-auto-rows: auto;
+    
+  }
+  .inp{
+    width: 100%;
+  }
+  .bar{
+    margin-bottom: 1%;
+  }

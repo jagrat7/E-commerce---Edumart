@@ -1,0 +1,7 @@
+<section class="tileWrapper">
+    <app-product-tile class="cd"
+      *ngFor="let product of products | slice:0:(more ? undefined : 8)"
+      [product]="product"
+      ></app-product-tile>
+</section>
+<button align="center" class="show" mat-raised-button color="accent" (click)="more = !more">{{ more ? ' Show less':'Show more' }}</button>

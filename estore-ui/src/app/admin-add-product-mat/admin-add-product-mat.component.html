@@ -1,0 +1,244 @@
+<form [formGroup]="addForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header class="header">
+      <mat-card-title>Add Product</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-radio-group formControlName="type">
+            <mat-label> Product Type</mat-label>
+            <mat-radio-button value="book">Book</mat-radio-button>
+            <mat-radio-button value="video">Video</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Product Name"
+              formControlName="name"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Price"
+              formControlName="price"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Topic"
+              formControlName="topic1"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Rating"
+              formControlName="rating"
+            />
+            <mat-hint align="start"><strong>0 - 5</strong> </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Review"
+              formControlName="review1"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Author"
+              formControlName="author"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="addForm.value.type != 'book'">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Duration"
+              formControlName="duration"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="addForm.value.type != 'book'">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Format"
+              formControlName="format1"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="addForm.value.type == 'book'">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="text"
+              placeholder="Print Type"
+              formControlName="print_type1"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="addForm.value.type == 'book'">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              type="number"
+              placeholder="Quantity"
+              formControlName="quantity"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div>&nbsp;</div>
+          <div>Product Image:</div>
+          <mat-button-toggle-group
+            name="imageType"
+            #group="matButtonToggleGroup"
+            aria-label="Image_Type"
+            [value]="selectedType"
+            (change)="onImageTypeChange(group.value)"
+          >
+            <mat-button-toggle value="url">URL</mat-button-toggle>
+            <mat-button-toggle value="local">LOCAL</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <div *ngIf="selectedType == 'url'">
+            <label> Image URL </label>
+            <div
+              *ngFor="let urlData of selectedUrl; index as index"
+              class="url"
+            >
+              <input
+                id="{{ 'linkurl_' + (index + 1) }}"
+                type="text"
+                [(ngModel)]="urlData.url"
+                [ngModelOptions]="{ standalone: true }"
+                (keyup)="submitDisableBasedOnImageValue()"
+                class="urlInput"
+              />
+              &nbsp;&nbsp;&nbsp;
+              <button mat-raised-button (click)="addUrl(index)">
+                Add another URL
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="selectedType == 'local'">
+            <label> Upload Images:&nbsp;</label>
+            <input
+              id="fileInput"
+              type="file"
+              (change)="addFiles($event)"
+              accept=".jpg, .png, .jpeg"
+              [(ngModel)]="currentFileData"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            <div
+              [ngClass]="selectedFiles.length > 0 ? '' : 'dN'"
+              *ngFor="let file of selectedFiles; index as index"
+            >
+              <mat-card class="example-card">
+                <mat-card-content>
+                  <p style="display: inline">{{ file.name }}</p>
+                  <mat-icon
+                    class="example-icon"
+                    class="cP"
+                    (click)="removeFileAdded(index, file)"
+                    >close</mat-icon
+                  >
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="button_row">
+        <button mat-raised-button color="accent" (click)="goBack()">
+          Cancel
+        </button>
+        &nbsp;
+        <!-- Cancel not working yet -->
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="isSubmitDisable"
+        >
+          Submit
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

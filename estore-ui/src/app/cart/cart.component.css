@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #e3f0ff, #fafcff);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cartProductList {
+  width: 70%;
+  height: 85%;
+  background-color: #ffffffa2;
+  border-radius: 20px;
+  box-shadow: 0px 25px 40px #1687d933;
+  border-color: rgb(0, 0, 0);
+  border: solid;
+  border-width: thin;
+}
+.cartItem {
+  margin: auto;
+  width: 90%;
+  height: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.totalPrice {
+  position: relative;
+  left: 62%;
+}
+.checkout {
+  position: relative;
+  left: 65%;
+  border-radius: 3px;
+  background-color: rgb(244, 218, 91);
+}
+
+.cP {
+  cursor: pointer;
+}
+
+.cD {
+  cursor: not-allowed;
+}
+
+.deletedProductTooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.deletedProductTooltip .deletedProductTooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.deletedProductTooltip:hover .deletedProductTooltiptext {
+  visibility: visible;
+}
+.move {
+  text-align: end;
+}

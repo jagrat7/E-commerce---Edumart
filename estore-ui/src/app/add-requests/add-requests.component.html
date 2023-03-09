@@ -1,0 +1,52 @@
+<h2 class="invhead">Author Product Requests</h2>
+
+<div>
+  <table mat-table [dataSource]="products" class="mat-elevation-z8 tabby">
+    <caption></caption>
+    <ng-container matColumnDef="Type">
+      <th mat-header-cell *matHeaderCellDef>Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Update">
+      <th mat-header-cell *matHeaderCellDef>Approve</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          (click)="onApproveProduct(element)"
+          routerLink="/addRequests"
+          color="accent"
+        >
+          Approve
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <th mat-header-cell *matHeaderCellDef>Reject</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          (click)="onDelete(element)"
+          routerLink="/addRequests"
+          color="warn"
+        >
+          Reject
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

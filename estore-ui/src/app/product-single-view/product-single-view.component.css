@@ -1,0 +1,51 @@
+
+
+  h2 {
+    font-size:3.0em;
+    flex:  1;
+  }
+  h3 {
+    margin:0;
+    padding:0;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  .one {
+    padding-top: 6%;
+    grid-column: 1 / 2;
+    grid-row: 1;
+    justify-self:  center;
+  }
+  .two {
+    padding-top: 6%;
+    grid-column: 2 / 2;
+    grid-row: 1 ;
+    justify-self:  stretch;
+    min-height: 45vh;
+
+  }
+  .addToCart{
+    font-size: xx-large;
+    padding: 1%;
+    float: right;
+  }
+  .imh{
+    object-fit:scale-down;
+    min-height: 45vh;
+    max-height: 45vh;
+  }
+  .imhIn{
+    object-fit:scale-down;
+    min-height: 10vh;
+    max-height: 10vh;
+  }
+  .addCartButt{
+    float: right;
+    padding: 1% 2%;
+    font-size: larger;
+  }

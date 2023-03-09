@@ -1,0 +1,76 @@
+<section>
+  <h2 class="invhead">Admin controls</h2>
+
+  <div align="center">
+    <button class="apButts" mat-raised-button color="primary" routerLink="/add">
+      Add a product
+    </button>
+    <button
+      class="apButts"
+      mat-raised-button
+      color="primary"
+      routerLink="/addRequests"
+    >
+      View add requests
+    </button>
+    <button
+      class="apButts"
+      mat-raised-button
+      color="primary"
+      routerLink="/history/inventory"
+    >
+      View inventory history
+    </button>
+  </div>
+  <h2 class="invhead">Inventory of Products</h2>
+
+  <div>
+    <table mat-table [dataSource]="products" class="mat-elevation-z8 tabby">
+      <caption></caption>
+      <ng-container matColumnDef="Type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Update">
+        <th mat-header-cell *matHeaderCellDef>Update</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            routerLink="/admin_edit/{{ element.type }}/{{ element.id }}"
+            color="accent"
+          >
+            Update
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef>Delete</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            (click)="onDelete(element)"
+            routerLink="/admin_item_list"
+            color="warn"
+          >
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</section>

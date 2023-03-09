@@ -1,0 +1,26 @@
+<div class="">
+  <mat-card class="card">
+    <span id="Author" class="textCart">
+      Session author name: {{ cartSession.name }}
+    </span>
+    <span class="textCart">
+      <p><strong>Price: </strong>{{ 0 }}</p>
+    </span>
+    <span class="textCart"
+      ><a class="">
+        Session time:
+        {{ cartSession.time | date: "EEEE, MMM dd, yyyy h:mm:ss a" }}
+      </a></span
+    >
+    <span
+      ><button
+        mat-raised-button
+        color="warn"
+        style="float: right"
+        (click)="onDelete()"
+      >
+        Remove
+      </button></span
+    >
+  </mat-card>
+</div>

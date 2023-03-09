@@ -1,0 +1,75 @@
+h2 {
+  font-size: 1em;
+  flex: 1;
+}
+h4 {
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+}
+.tools {
+  justify-content: flex-end;
+  display: inline-block;
+  margin-top: 8px;
+  flex-wrap: nowrap;
+}
+.details {
+  justify-content: flex-end;
+  display: inline-block;
+  display: block;
+  background-color: #37ad79;
+  padding: 8px;
+  font-size: 0.8em;
+  border-radius: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.quantityDetails {
+  justify-content: flex-end;
+  display: inline-block;
+  background-color: #37ad79;
+  padding: 8px;
+  font-size: 0.8em;
+  border-radius: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.isDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  justify-content: flex-end;
+  display: inline-block;
+  background-color: #37ad79;
+  padding: 8px;
+  font-size: 0.8em;
+  border-radius: 4px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mC {
+  cursor: pointer;
+}
+/* .cardH {
+} */
+.imh {
+  /* overflow-y: auto;
+    overflow-x: hidden;
+
+     */
+  object-fit: scale-down;
+  max-height: 25vh;
+  min-height: 25vh;
+  /* object-position: top; */
+}
+.hres {
+  /* max-height: 5vh; */
+  /* min-height: 5.5vh; */
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

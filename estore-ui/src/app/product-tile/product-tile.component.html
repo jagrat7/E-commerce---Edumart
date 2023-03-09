@@ -1,0 +1,119 @@
+<!-- 
+<div  class="tile" >
+  <span class = "mC" routerLink="/single_product/{{product.type}}/{{product.id}}">
+  <h2>{{ product.name }}</h2>
+  <h4>Rating : {{ product.rating }}</h4>
+  <h4>Type : {{ product.type }}</h4>
+  <h3>Price : $ {{ product.price }}</h3>
+</span>
+
+<div class="tools dd" *ngIf="isAdmin;else NonAdmin">
+  <a class="isDisabled">
+    Add to Cart
+  </a>
+</div>
+<ng-template #NonAdmin>
+<div class="tools" *ngIf="product.quantityInCart == -1 || !product.quantityInCart;else Quantity">
+  <button mat-raised-button color="primary" (click) ="onAdd(product)">add to cart</button>
+
+</div>
+
+<ng-template #Quantity><a class="quantityDetails" (click) = "modifyQuantity(product, false)">-</a>
+{{ product.quantityInCart }} <a class="quantityDetails" (click) = "modifyQuantity(product, true)">+</a>
+</ng-template>
+</ng-template>
+  </div>
+   -->
+
+<body>
+  <div class="mC">
+    <mat-card class="example-card cc mC">
+      <mat-card-header
+        routerLink="/single_product/{{ product.type }}/{{ product.id }}"
+      >
+        <mat-card-title class="hres">{{ product.name }}</mat-card-title>
+        <mat-card-subtitle> {{ product.type | titlecase }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <div
+        class="example-card cc mC"
+        routerLink="/single_product/{{ product.type }}/{{ product.id }}"
+      >
+        <div *ngIf="product.image == null; else elseBlock">
+          <img
+            alt="Edumart Logo"
+            class="imh"
+            mat-card-image
+            src="../../assets/images/misc/edumart-logo.png"
+          />
+        </div>
+        <ng-template #elseBlock>
+          <div *ngIf="product.image.type == 'URL'; else elseBlock">
+            <img
+              alt="product Image"
+              class="imh"
+              mat-card-image
+              src="{{ product.image.imageSrc[0] }}"
+            />
+          </div>
+          <ng-template #elseBlock>
+            <img
+              alt="Video Image"
+              *ngIf="product.type == 'video'"
+              class="imh"
+              mat-card-image
+              src="../../assets/images/Products/Videos/{{
+                product.image.imageSrc[0]
+              }}"
+            />
+            <img
+              alt="Book Image"
+              *ngIf="product.type == 'book'"
+              class="imh"
+              mat-card-image
+              src="../../assets/images/Products/Books/{{
+                product.image.imageSrc[0]
+              }}"
+            />
+          </ng-template>
+        </ng-template>
+      </div>
+      <mat-card-content>
+        <button mat-button>PRICE</button>
+        <p style="display: inline">$ {{ product.price }}</p>
+        <button
+          mat-raised-button
+          style="float: right"
+          *ngIf="!isAdmin && !isAuthor"
+          (click)="onAdd(product)"
+          color="primary"
+        >
+          Add to cart
+        </button>
+      </mat-card-content>
+      <!-- <mat-card-actions>
+        </mat-card-actions> -->
+    </mat-card>
+    <ng-template #NonAdmin>
+      <div
+        class="tools"
+        *ngIf="
+          product.quantityInCart == -1 || !product.quantityInCart;
+          else Quantity
+        "
+      >
+        <button mat-raised-button color="primary" (click)="onAdd(product)">
+          add to cart
+        </button>
+      </div>
+
+      <ng-template #Quantity
+        ><a class="quantityDetails" (click)="modifyQuantity(product, false)"
+          >-</a
+        >
+        {{ product.quantityInCart }}
+        <a class="quantityDetails" (click)="modifyQuantity(product, true)">+</a>
+      </ng-template>
+    </ng-template>
+  </div>
+</body>

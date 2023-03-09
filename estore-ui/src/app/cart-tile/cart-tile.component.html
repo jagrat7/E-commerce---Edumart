@@ -1,0 +1,84 @@
+<!-- <div class="cartProductList" [ngClass]="cartProduct.productDetails.status === Status.TO_BE_DELETED ? 'deletedProductTooltip' : ''">
+<p class="cartItem">
+  <span [ngClass]="cartProduct.productDetails.status === Status.TO_BE_DELETED ? 'disable' : ''">
+    <a>
+      <h2 id="productName" routerLink="/single_product/{{ cartProduct.type }}/{{cartProduct.productDetails.id}}">
+        {{ cartProduct.productDetails.name }}
+      </h2>
+    </a>
+    </span>
+  <span [ngClass]="cartProduct.productDetails.status === Status.TO_BE_DELETED ? 'disable' : ''">
+    <p>
+      <b>Price: </b>{{ cartProduct.productDetails.price }}     
+  </p>
+</span>
+
+  <span [ngClass]="cartProduct.productDetails.status === Status.TO_BE_DELETED ? 'disable freezePointer' : ''"><a class="quantityDetails" (click) = "modifyQuantity(cartProduct, false)">-</a>
+    {{ cartProduct.quantity }} <a class="quantityDetails" (click) = "modifyQuantity(cartProduct, true)">+</a></span>
+
+  <span><button (click)="onDelete()" class="cp">Remove</button></span>
+
+  <span class="deletedProductTooltiptext" *ngIf="cartProduct.productDetails.status === Status.TO_BE_DELETED">This Product is unavailable</span>
+  </p>
+</div> -->
+<div
+  [ngClass]="
+    cartProduct.productDetails.status === Status.TO_BE_DELETED
+      ? 'deletedProductTooltip'
+      : ''
+  "
+>
+  <mat-card
+    class="card"
+    [ngClass]="
+      cartProduct.productDetails.status === Status.TO_BE_DELETED
+        ? 'disable'
+        : ''
+    "
+  >
+    <span
+      class="textCart"
+      id="productName"
+      routerLink="/single_product/{{ cartProduct.type }}/{{
+        cartProduct.productDetails.id
+      }}"
+    >
+      {{ cartProduct.productDetails.name }}
+    </span>
+    <span class="textCart"
+      ><strong>Price: $</strong>{{ cartProduct.productDetails.price }}</span
+    >
+    <span
+      class="textCart"
+      [ngClass]="
+        cartProduct.productDetails.status === Status.TO_BE_DELETED
+          ? 'disable freezePointer'
+          : ''
+      "
+      ><a class="quantityDetails" (click)="modifyQuantity(cartProduct, false)"
+        >-</a
+      >
+      {{ cartProduct.quantity }}
+      <a class="quantityDetails" (click)="modifyQuantity(cartProduct, true)"
+        >+</a
+      ></span
+    >
+
+    <span
+      ><button
+        mat-raised-button
+        color="warn"
+        style="float: right"
+        (click)="onDelete()"
+      >
+        Remove
+      </button></span
+    >
+  </mat-card>
+
+  <span
+    class="deletedProductTooltiptext"
+    *ngIf="cartProduct.productDetails.status === Status.TO_BE_DELETED"
+    >This Product is unavailable</span
+  >
+</div>

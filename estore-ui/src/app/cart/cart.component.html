@@ -1,0 +1,55 @@
+<div>
+  <h1>Your Cart</h1>
+  <h2 *ngIf="!isCartProductsEmpty">Products</h2>
+  <app-cart-tile
+    *ngFor="let cartProduct of cartProducts"
+    [cartProduct]="cartProduct"
+    (delete)="onDeleteCartProduct($event)"
+  >
+  </app-cart-tile>
+  <h2 *ngIf="!isCartSessionsEmpty">Sessions</h2>
+  <app-cart-tile-sesssion
+    *ngFor="let cartSession of cartSessions"
+    [cartSession]="cartSession"
+    (delete)="onDeleteCartSession($event)"
+  >
+  </app-cart-tile-sesssion>
+  <h3 class="totalPrice">
+    <strong>Total Price:</strong> $ {{ totalPrice | number: "1.2-2" }}
+  </h3>
+
+  <button
+    mat-raised-button
+    color="primary"
+    style="float: right"
+    class=""
+    *ngIf="noOfProductsDeleted === 0; else Disabled"
+    (click)="checkout()"
+  >
+    Check Out
+  </button>
+
+  <ng-template #Disabled>
+    <div [ngClass]="noOfProductsDeleted > 0 ? 'deletedProductTooltip' : ''">
+      <button
+        mat-raised-button
+        color="primary"
+        style="float: right"
+        class="checkout cD"
+        disabled
+      >
+        Check Out
+      </button>
+      <span
+        [ngClass]="noOfProductsDeleted > 0 ? 'deletedProductTooltiptext' : ''"
+        *ngIf="noOfProductsDeleted > 0"
+        >{{ noOfProductsDeleted }} Product(s) are unavailable in your cart.
+        Kindly Remove it to do Checkout</span
+      >
+    </div>
+  </ng-template>
+</div>
+
+<!-- <ng-template ngFor let-item [ngForOf]="cartSessions" let-i="index">
+  <li>{{item.name}}</li>
+</ng-template> -->

@@ -1,0 +1,26 @@
+<h1>Purchase History</h1>
+<ul *ngFor="let purchaseHistoryProduct of purchaseHistoryProducts">
+  <p class="time">
+    <strong>Purchase Made on</strong>
+    {{
+      purchaseHistoryProduct.timeStamp | date: "EEEE, MMM dd, yyyy h:mm:ss a"
+    }}
+  </p>
+  <ul class="product" *ngFor="let product of purchaseHistoryProduct.products">
+    <span
+      ><p><strong>Product Name</strong>: {{ product.name }}</p>
+      <p><strong>Type</strong>: {{ product.type }}</p>
+      <p><strong>Quantity</strong>: {{ product.quantity }}</p></span
+    >
+  </ul>
+  <ul class="product" *ngFor="let session of purchaseHistoryProduct.sessions">
+    <span
+      ><p><strong>Session Name</strong>: {{ session.name }}</p>
+      <p>
+        <strong>Time</strong>:
+        {{ session.time | date: "EEEE, MMM dd, yyyy h:mm:ss a" }}
+      </p>
+      <p><strong>Status</strong>: {{ session.status }}</p></span
+    >
+  </ul>
+</ul>

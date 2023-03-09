@@ -1,0 +1,90 @@
+<mat-card *ngIf="!author">
+  <mat-card-title
+    >Sorry, {{ author_name }} has no sessions available right
+    now.</mat-card-title
+  >
+  <mat-card-content class="emoji">
+    <p>(>_<)</p>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="author">
+  <mat-card-title>{{ author.name }}</mat-card-title>
+  <mat-card-subtitle
+    >Description: <em>{{ author.author_description }}</em></mat-card-subtitle
+  >
+  <mat-card-content>
+    <img
+      src="https://image.shutterstock.com/image-vector/default-avatar-profile-icon-grey-260nw-518740741.jpg"
+      alt=""
+      srcset=""
+    />
+    <div>
+      <h1>Rating</h1>
+      <div>
+        <mat-icon
+          *ngIf="author.rating >= 1"
+          aria-hidden="false"
+          fontIcon="star"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="author.rating >= 2"
+          aria-hidden="false"
+          fontIcon="star"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="author.rating >= 3"
+          aria-hidden="false"
+          fontIcon="star"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="author.rating >= 4"
+          aria-hidden="false"
+          fontIcon="star"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="author.rating == 5"
+          aria-hidden="false"
+          fontIcon="star"
+        ></mat-icon>
+        <!-- <mat-icon *ngIf="author.rating % 1 >= 0.5" aria-hidden="false" fontIcon="star_half"></mat-icon> -->
+        &nbsp;
+        <strong class="rate">{{ author.rating }} / 5</strong>
+      </div>
+    </div>
+    <div>
+      <h1>Topics</h1>
+      <div *ngFor="let topic of author.topics; index as i">
+        {{ i + 1 }}.{{ topic }}
+      </div>
+    </div>
+    <div>
+      <h1>Email</h1>
+      <p>{{ author.email }}</p>
+    </div>
+    <div>
+      <h1>Grades</h1>
+      <div *ngFor="let grade of author.grades; index as i">
+        {{ i + 1 }}.{{ grade }}
+      </div>
+    </div>
+
+    <div>
+      <h1>Sessions</h1>
+      <div *ngFor="let slot of author.slots; index as i">
+        {{ i + 1 }}.{{ slot | date: "EEEE, MMM dd, yyyy h:mm:ss a" }} &nbsp;
+        <button mat-button (click)="addSessionToCart(slot)">
+          Book Session
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <h1>Reviews</h1>
+      <p *ngFor="let review of author.reviews">"{{ review }}"</p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button> -->
+  </mat-card-actions>
+</mat-card>

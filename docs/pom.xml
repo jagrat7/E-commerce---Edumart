@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>E-Store</groupId>
+  <artifactId>design-doc</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>estore</name>
+  <description>Design documentation for E-Store project</description>
+
+  <properties>
+    <!-- Application build dependency versions
+    <maven.compiler.version>3.8.0</maven.compiler.version>
+    <maven.assembly.version>3.1.0</maven.assembly.version> -->
+    <maven.exec.version>1.6.0</maven.exec.version> 
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${maven.exec.version}</version>
+        <executions>
+          <execution>
+            <id>docs</id>
+            <configuration>
+              <executable>pandoc</executable>
+              <workingDirectory>${project.basedir}</workingDirectory>
+              <arguments>
+                <argument>DesignDoc.md</argument>
+                <argument>-o</argument>
+                <argument>${project.basedir}/DesignDoc.pdf</argument>
+              </arguments>
+            </configuration>
+          </execution> 
+        </executions>
+      </plugin>  
+    </plugins>
+  </build>
+</project>

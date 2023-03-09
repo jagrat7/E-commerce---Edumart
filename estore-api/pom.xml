@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.2</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.estore.api</groupId>
+	<artifactId>estore-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>estore-api</name>
+	<description>API for E-Store</description>
+	<properties>
+		<java.version>11</java.version>
+		<jacoco.version>0.8.8</jacoco.version>
+		<exec.maven.version>3.0.0</exec.maven.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${exec.maven.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>tests-and-coverage</id>
+						<configuration>
+							<executable>mvn</executable>
+							<arguments>
+								<argument>clean</argument>
+								<argument>test-compile</argument>
+								<argument>surefire:test@controller</argument>
+								<argument>jacoco:report@controller</argument>
+								<argument>surefire:test@model</argument>
+								<argument>jacoco:report@model</argument>
+								<argument>surefire:test@persistence</argument>
+								<argument>jacoco:report@persistence</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.estore.api.estoreapi.EstoreApiApplication</mainClass>
+					<arguments></arguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<configuration>
+					<destfile>/target/coverage-reports/jacoco-unit.exec</destfile>
+					<datafile>/target/coverage-reports/jacoco-unit.exec</datafile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<configuration>
+							<!-- throw away the old data with each test run -->
+							<append>false</append>
+						</configuration>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- attached to Maven test phase -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>controller</id>
+						<configuration>
+							<footer>Controller Tier</footer>
+							<title>E-Store API Controller Tier Test Coverage</title>
+							<outputDirectory>target/site/jacoco/controller</outputDirectory>
+						</configuration>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>persistence</id>
+						<configuration>
+							<footer>Persistence Tier</footer>
+							<title>E-Store API Persistence Tier Test Coverage</title>
+							<outputDirectory>target/site/jacoco/persistence</outputDirectory>
+						</configuration>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>model</id>
+						<configuration>
+							<footer>Model Tier</footer>
+							<title>E-Store API Model Tier Test Coverage</title>
+							<outputDirectory>target/site/jacoco/model</outputDirectory>
+						</configuration>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-check</id>
+						<goals>
+						  <goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+							  <rule>
+								  <element>BUNDLE</element>
+								  <limits>
+								 <limit>
+								   <counter>INSTRUCTION</counter>
+								   <value>COVEREDRATIO</value>
+								   <minimum>0.90</minimum>
+								 </limit>
+							 </limits>
+								 </rule>
+								</rules>
+					   </configuration>
+			 		</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

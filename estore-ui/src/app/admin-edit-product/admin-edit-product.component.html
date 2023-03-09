@@ -1,0 +1,307 @@
+<!-- The form for admin to update(edit) a product, called from admin-inv-list -->
+<mat-card class="shipping-card">
+  <mat-card-header class="header">
+    <mat-card-title>Edit Product</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="Product Name"
+            [(ngModel)]="product.name"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="Description"
+            [(ngModel)]="product.description"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="number"
+            placeholder="Price"
+            [(ngModel)]="product.price"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="text"
+            placeholder="Author"
+            [(ngModel)]="product.author"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="product.type != 'book'">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="number"
+            placeholder="Duration"
+            [(ngModel)]="product.duration"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="product.type == 'book'">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            type="number"
+            placeholder="Quantity"
+            [(ngModel)]="product.quantity"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="full-width">
+          <mat-button-toggle-group
+            name="imageType"
+            #group="matButtonToggleGroup"
+            aria-label="Image_Type"
+            [value]="selectedType"
+            (change)="onImageTypeChange(group.value)"
+          >
+            <mat-button-toggle value="url">URL</mat-button-toggle>
+            <mat-button-toggle value="local">LOCAL</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <div [ngClass]="selectedType == 'url' ? '' : 'dN'">
+            <label> Image URL </label>
+            <div *ngFor="let urlData of selectedUrl; index as index">
+              <input
+                class="url_input"
+                id="{{ 'linkurl_' + (index + 1) }}"
+                type="text"
+                [(ngModel)]="urlData.url"
+                [ngModelOptions]="{ standalone: true }"
+                (keyup)="submitDisableBasedOnImageValue()"
+              />
+              <button mat-raised-button (click)="addUrl(index)">
+                Add another URL
+              </button>
+            </div>
+          </div>
+
+          <div [ngClass]="selectedType == 'local' ? '' : 'dN'">
+            <label> Upload Images:</label>
+
+            <input
+              id="fileInput"
+              type="file"
+              (change)="addFiles($event)"
+              accept=".jpg, .png, .jpeg, .PNG"
+              [(ngModel)]="currentFileData"
+              [ngModelOptions]="{ standalone: true }"
+              *ngIf="selectedFiles.length <= 2; else Disabled"
+            />
+            <ng-template #Disabled>
+              <input
+                id="fileInput"
+                type="file"
+                (change)="addFiles($event)"
+                accept=".jpg, .png, .jpeg, .PNG"
+                [(ngModel)]="currentFileData"
+                [ngModelOptions]="{ standalone: true }"
+                disabled
+                title="Only 3 Files are allowed"
+              />
+            </ng-template>
+            <div
+              [ngClass]="existingImages.length > 0 ? '' : 'dN'"
+              *ngFor="let file of existingImages; index as index"
+            >
+              <mat-card class="example-card">
+                <mat-card-content>
+                  <p style="display: inline">{{ file.name }}</p>
+                  <mat-icon
+                    class="example-icon"
+                    class="cP"
+                    (click)="removeExistingImage(index, file)"
+                    >close</mat-icon
+                  >
+                </mat-card-content>
+              </mat-card>
+            </div>
+            <div
+              [ngClass]="selectedFiles.length > 0 ? '' : 'dN'"
+              *ngFor="let file of selectedFiles; index as index"
+            >
+              <mat-card class="example-card">
+                <mat-card-content>
+                  <p style="display: inline">{{ file.name }}</p>
+                  <mat-icon
+                    class="example-icon"
+                    class="cP"
+                    (click)="removeFileAdded(index, file)"
+                    >close</mat-icon
+                  >
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="button_row">
+      <button mat-raised-button color="accent" (click)="goBack()">
+        Cancel
+      </button>
+      &nbsp;
+      <!-- Cancel not working yet -->
+      <button mat-raised-button color="primary" (click)="save()">
+        Save Update
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>
+<!-- 
+<ul>
+    <li>
+        <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Product Name" [(ngModel)]="product.name">
+          </mat-form-field>
+    </li>
+    <li>
+        <label for="name">Name:&nbsp;</label>
+        <input type="text" name="name" id="name" [(ngModel)]="product.name">
+    </li>
+    <li>
+        <label for="description">Description:&nbsp;</label>
+        <input type="text" name="description" id="description" [(ngModel)]="product.description">
+    </li>
+    <li>
+        <label for="price">Price:&nbsp;</label>
+        <input type="number" name="price" id="price" [(ngModel)]="product.price">
+    </li>
+    <li>
+        <label for="author">Author:&nbsp;</label>
+        <input type="text" name="author" id="author" [(ngModel)]="product.author">
+    </li>
+    <li>
+        <label for="duration">Duration:&nbsp;</label>
+        <input type="text" name="duration" id="duration" [(ngModel)]="product.duration">
+    </li>
+    <li>
+        <label for="quantity">Quantity:&nbsp;</label>
+        <input type="text" name="quantity" id="quantity" [(ngModel)]="product.quantity">
+    </li>
+
+    <li>
+
+        <mat-button-toggle-group name="imageType" #group="matButtonToggleGroup" aria-label="Image_Type" [value]="selectedType" (change)="onImageTypeChange(group.value)">
+        <mat-button-toggle value="url">URL</mat-button-toggle>
+        <mat-button-toggle value="local">LOCAL</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <div [ngClass]="selectedType == 'url' ? '' : 'dN'">
+            <label> Image URL </label>
+            <div  *ngFor="let urlData of selectedUrl; index as index;">
+                <input id="{{ 'linkurl_' + (index+1) }}" type="text" [(ngModel)]="urlData.url" [ngModelOptions]="{standalone: true}" (keyup)="submitDisableBasedOnImageValue()" />
+                <mat-icon class="example-icon" class="cP" (click)="addUrl(index)">add</mat-icon>
+            </div>
+
+        </div> 
+
+        <div [ngClass]="selectedType == 'local' ? '' : 'dN'">
+            <label> Upload Images:</label>
+
+                <input id="fileInput" type="file" (change)="addFiles($event)" accept=".jpg, .png, .jpeg, .PNG" [(ngModel)]="currentFileData" [ngModelOptions]="{standalone: true}" *ngIf="selectedFiles.length <= 2;else Disabled" />
+                <ng-template #Disabled>
+                    <input id="fileInput" type="file" (change)="addFiles($event)" accept=".jpg, .png, .jpeg, .PNG" [(ngModel)]="currentFileData" [ngModelOptions]="{standalone: true}" disabled title="Only 3 Files are allowed" />
+                  </ng-template>
+                <div [ngClass]="existingImages.length > 0 ? '' : 'dN'" *ngFor="let file of existingImages; index as index;" >
+                    <mat-card class="example-card" >
+                        <mat-card-content>
+                            <p style="display: inline;">{{ file.name }}</p>
+                            <mat-icon class="example-icon" class="cP" (click)="removeExistingImage(index,file)">close</mat-icon>
+                          </mat-card-content>
+
+                    </mat-card>
+                </div>
+                <div [ngClass]="selectedFiles.length > 0 ? '' : 'dN'" *ngFor="let file of selectedFiles; index as index;" >
+                    <mat-card class="example-card" >
+                        <mat-card-content>
+                            <p style="display: inline;">{{ file.name }}</p>
+                            <mat-icon class="example-icon" class="cP" (click)="removeFileAdded(index,file)">close</mat-icon>
+                          </mat-card-content>
+
+                    </mat-card>
+                </div>
+
+        </div>
+
+       
+        
+        
+    </li>
+</ul>
+ -->
+
+<button (click)="save()" [disabled]="isSubmitDisable">save update</button>
+
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ul>
+        <li>
+            <label for="type">Type:&nbsp;</label>
+            <select name="type" id="type" formControlName="type">
+                <option>book</option>
+                <option>video</option>
+            </select>
+        </li>
+        <li>
+            <label for="name">Name:&nbsp;</label>
+            <input type="text" name="name" id="name" formControlName="name">
+        </li>
+        <li>
+            <label for="description">Description:&nbsp;</label>
+            <input type="text" name="description" id="description" formControlName="description">
+        </li>
+        <li>
+            <label for="price">Price:&nbsp;</label>
+            <input type="number" name="price" id="price" formControlName="price">
+        </li>
+        <li>
+            <label for="author">Author:&nbsp;</label>
+            <input type="text" name="author" id="author" formControlName="author">
+        </li>
+        <li>
+            <label for="duration">Duration:&nbsp;</label>
+            <input type="text" name="duration" id="duration" formControlName="duration">
+        </li>
+
+    </ul>
+    <button type="submit">Save</button>
+</form> -->

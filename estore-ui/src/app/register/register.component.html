@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-2"></div>
+    <div class="col-lg-6 col-md-8 login-box">
+      <div class="col-lg-12 login-key">
+        <i class="fa fa-key" aria-hidden="true"></i>
+      </div>
+      <div class="col-lg-12 login-title mL10">REGISTER</div>
+
+      <div class="col-lg-12 login-form">
+        <div class="col-lg-12 login-form">
+          <form>
+            <div class="form-group center">
+              <label class="form-control-label">USERNAME</label>
+              <input
+                type="text"
+                [(ngModel)]="username"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control mL5"
+                required
+              />
+            </div>
+            <div class="form-group center">
+              <label class="form-control-label">PASSWORD</label>
+              <input
+                type="password"
+                [(ngModel)]="password"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control mL5"
+                required
+              />
+            </div>
+            <div class="center_error">
+              {{ message }}
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-outline-primary cancel cP"
+                (click)="cancel()"
+              >
+                CANCEL
+              </button>
+              <button type="submit" *ngIf="(username.trim() != '' && password.trim() != '');else Disabled" class="btn btn-outline-primary login cP" (click)="register()">
+                REGISTER
+              </button>
+              <ng-template #Disabled>
+                <button type="submit"class="btn btn-outline-primary login cP" disabled>
+                  REGISTER
+                </button>
+              </ng-template>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-2"></div>
+    </div>
+  </div>
+</div>

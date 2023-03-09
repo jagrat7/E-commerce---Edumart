@@ -1,0 +1,86 @@
+<div class="wrapper">
+  <!-- <div class="one">
+
+    <img *ngIf="product_single.type=='video'" src="../../assets/images/video.png" alt="">
+    <img *ngIf="product_single.type=='book'" src="../../assets/images/open-book.png" alt="">
+
+  </div> -->
+
+  <div class="one">
+    <p-galleria
+      [showIndicators]="false"
+      [value]="images"
+      [responsiveOptions]="responsiveOptions"
+      [containerStyle]="{ 'max-hieght': '50%' }"
+      [numVisible]="5"
+    >
+      <ng-template pTemplate="item" let-item>
+        <img alt="product image" class="imh" [src]="item" style="width: 100%" />
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+          <img
+            alt="product image"
+            class="imhIn"
+            [src]="item"
+            width="80%"
+            height="80%"
+          />
+        </div>
+      </ng-template>
+    </p-galleria>
+  </div>
+  <div class="two">
+    <mat-list role="list">
+      <mat-list-item role="listitem"
+        ><h2>{{ product_single.name }}</h2></mat-list-item
+      >
+      <!-- <mat-list-item role="listitem">{{ product_single.type }}</mat-list-item> -->
+      <mat-list-item role="listitem"> </mat-list-item>
+      <mat-list-item role="listitem">
+        {{ product_single.description }}</mat-list-item
+      >
+      <mat-list-item role="listitem"
+        ><strong>Author</strong> :
+        <a
+          [routerLink]="['/author']"
+          [queryParams]="{
+            id: product_single.createdBy,
+            name: product_single.author
+          }"
+          >{{ product_single.author }}</a
+        ></mat-list-item
+      >
+
+      <!-- <mat-list-item *ngIf="product_single.createdBy < 400" role="listitem"><b>Author</b>  : {{ product_single.author }}</mat-list-item> -->
+      <mat-list-item *ngIf="product_single.type == 'video'" role="listitem"
+        ><strong>Duration</strong> :
+        {{ product_single.duration }}</mat-list-item
+      >
+      <mat-list-item *ngIf="product_single.type == 'video'" role="listitem"
+        ><strong>Format</strong> : {{ product_single.format }}</mat-list-item
+      >
+      <mat-list-item *ngIf="product_single.type == 'book'" role="listitem"
+        ><strong>Weight</strong> : {{ product_single.weight }}</mat-list-item
+      >
+      <mat-list-item *ngIf="product_single.type == 'book'" role="listitem">
+        <strong>Pages</strong> : {{ product_single.pages }}</mat-list-item
+      >
+      <mat-list-item role="listitem"
+        ><strong>Rating</strong> : {{ product_single.rating }}</mat-list-item
+      >
+      <mat-list-item role="listitem"
+        ><strong>Price</strong> : ${{ product_single.price }}</mat-list-item
+      >
+    </mat-list>
+    <button
+      mat-raised-button
+      color="primary"
+      class="addCartButt"
+      (click)="onAdd()"
+      *ngIf="!isAdmin && !isAuthor"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>

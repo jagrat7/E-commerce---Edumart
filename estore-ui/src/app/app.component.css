@@ -1,0 +1,70 @@
+body{
+
+
+}
+.containerT{
+    position: relative;
+    /* padding-bottom:60px; */
+    
+}
+.container{
+    margin: 5em;
+    margin-top: 2em;
+    min-height: 100vh;
+}
+.example-icon2{
+
+    /* align-self: right; */
+    float: right;
+    
+}
+.fill-space {
+    flex: 1 1 auto;
+  }
+
+  .logo{
+    margin-bottom: -0.2%;
+  }
+
+.footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+  
+.logo2{
+    margin: 0 auto;
+}
+.logo2img{
+    margin:  auto ;
+    margin-left: 
+    -30.75%;
+}
+.icon{
+    margin: auto;
+    text-align: center;
+}
+.pip{
+    padding-right: 140%;
+    margin-left: -70%;
+    font-size: large;
+
+}
+
+.cc{
+    background-color: #2f3a33;
+    color: azure;
+    margin: auto;
+    display: block;
+padding-top: 0.5%;
+    text-align: center;
+    font-size: medium;
+}
+.text{
+    font-size: medium;
+    text-decoration: wavy;
+}
+.sI{
+    padding: 0%;
+    margin: 0;
+}

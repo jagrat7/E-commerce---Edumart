@@ -1,0 +1,15 @@
+<div id="search-component" class="bar">
+  <!-- <label for="search-box">Product Search</label>
+  <input #searchBox id="search-box" /> -->
+
+  <mat-form-field class="inp" appearance="legacy">
+    <mat-label>Search for a product</mat-label>
+    <input type="search" (keydown.enter)="getSearchedProducts(searchBox.value)" #searchBox id="search-box"  matInput placeholder="BookName or Video tile...">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <!-- <button mat-raised-button color="primary" (click)="getSearchedProducts(searchBox.value)">search</button> -->
+  <div class="tileWrapper">
+    <app-product-tile  *ngFor="let product of Sproducts "   [product]="product"></app-product-tile>
+  </div>
+
+</div>

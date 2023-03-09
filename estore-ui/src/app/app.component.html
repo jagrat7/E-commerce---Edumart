@@ -1,0 +1,103 @@
+<body>
+  <div class="containerT">
+    <div class="container">
+      <div>
+        <mat-toolbar color="primary">
+          <!-- <button mat-icon-button class="example-icon" >
+              <mat-icon>menu</mat-icon>
+            </button> -->
+          <span class="logo" style="cursor: pointer" a routerLink="/home"><img
+              src="../assets/images/misc/edumart-low-resolution-logo-color-on-transparent-background.png" alt=""
+              width="11%" height="11%" srcset="" /></span>
+          <span class="fill-space"></span>
+          <!-- <span class="example-spacer"></span> -->
+
+          <span mat-icon-button *ngIf="isLogIn" class="text">
+            Hello {{ userName }}
+          </span>
+
+          <button mat-icon-button class="example-icon" routerLink="/home">
+            <mat-icon>home</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" *ngIf="isAdmin" routerLink="/admin_item_list"
+            title="Admin Panel">
+            <mat-icon>assignment_ind</mat-icon>
+          </button>
+
+          <button mat-icon-button class="example-icon" *ngIf="!isLogIn" routerLink="/login" title="Login">
+            <mat-icon>login</mat-icon>
+          </button>
+          <!-- <button mat-icon-button class="example-icon" *ngIf="isLogIn"  (click)="logOut()" title="Logout">
+                <mat-icon >logout</mat-icon>
+              </button> -->
+          <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" *ngIf="isLogIn">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu color="primary" #menu="matMenu">
+            <!-- <button color="primary"  *ngIf="!isAdmin && isLogIn && !isAuthor"  mat-menu-item>Your sessions</button> -->
+            <button color="primary" *ngIf="!isAdmin && isLogIn && !isAuthor" routerLink="/history/purchase"
+              mat-menu-item>
+              Your orders
+            </button>
+            <button color="primary" *ngIf="!isAdmin && isLogIn && isAuthor" routerLink="/reqAddProd" mat-menu-item>
+              Request Form
+            </button>
+            <!-- <button color="primary"  *ngIf="!isAdmin && isLogIn" mat-menu-item>Your orders</button> -->
+            <button mat-icon-button class="example-icon" *ngIf="isLogIn" (click)="logOut()" title="Logout">
+              <mat-icon>logout</mat-icon> logout
+            </button>
+          </mat-menu>
+          <!-- <button mat-icon-button class="example-icon" *ngIf="isLogIn" > 
+                <mat-icon >account_circle</mat-icon>
+              </button> -->
+          <button mat-icon-button class="example-icon" *ngIf="isLogIn && !isAdmin && !isAuthor" title="Cart"
+            routerLink="/cart">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+          <!-- <button mat-icon-button >
+                <mat-icon matBadge="0" matBadgeColor="accent" *ngIf="!isAdmin && !isLogIn"  routerLink="/login" title="Cart"  class="example-icon">shopping_cart</mat-icon>
+              </button> -->
+        </mat-toolbar>
+      </div>
+      <!-- <ul class="navList">
+        <li *ngIf="!isLogIn"><a routerLink="/login">Log In</a></li>
+        <li *ngIf="isLogIn"><a (click)="logOut()">Log Out</a></li>
+        <li *ngIf="isAdmin"><a class="active" routerLink="/admin_item_list">Admin portal</a></li>
+        <li *ngIf="isLogIn && !isAdmin"><a routerLink="/cart">Cart</a></li>
+        <li *ngIf="!isAdmin && !isLogIn"><a routerLink="/login">Cart</a></li>
+        <li><a routerLink="/home">Home</a></li>
+        <li *ngIf="isLogIn" class="userNameAlign">Hello {{userName}}</li>
+      </ul> -->
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="footer">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span class="fill-space"></span>
+
+          <span class=" " a routerLink="/home"><img class="logo2img"
+              src="../assets/images/misc/edumart-low-resolution-logo-color-on-transparent-background.png" alt=""
+              width="11%" height="11%" srcset="" /></span>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row>
+          <!-- <span>FOOTER Second Line</span>
+          <span class="example-spacer"></span> -->
+          <div class="icon">
+            <em class="pi pi-instagram pip"></em>
+            <em class="pi pi-facebook pip"></em>
+            <em class="pi pi-twitter pip"></em>
+          </div>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row class="cc">
+          <span class="example-spacer"></span>
+          <span>© 2022 EduMart. All rights reserved.</span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </div>
+
+  <!-- <app-dasshy></app-dasshy> -->
+</body>
