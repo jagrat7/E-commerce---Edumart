@@ -2,14 +2,6 @@
 
 An online E-store system built in Java 8=>11 and springboot 2.6.2
 
-## Team
-
-- Poorna Chander Reddy (pp5109@rit.edu)
-- Jagrat Rao
-- Andrews Rajasekar(ar1516@g.rit.edu)
-- Haotian Zhang
-- Ragu Madhavan(rl6826@g.rit.edu)
-
 ## Prerequisites
 
 - Java 8=>11 (Make sure to have correct JAVA_HOME setup in your environment)
